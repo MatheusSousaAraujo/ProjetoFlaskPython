@@ -4,6 +4,18 @@
 
 Siga os passos abaixo para configurar e executar o projeto Flask em sua máquina local:
 
+### ✅ 0. Verificar se o Python está instalado
+
+```bash
+python --version
+```
+Ou, em alguns sistemas:
+```bash
+python3 --version
+```
+
+Se você não tiver o Python instalado, acesse: https://www.python.org/downloads/
+
 ### 📦 1. Criar e ativar o ambiente virtual
 
 ```bash
