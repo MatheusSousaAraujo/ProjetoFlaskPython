@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Mensagens - {{ contato.name }}</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-center align-items-center mb-4">
+        <h1 class="mb-0">{{ contato.name }}</h1>
+        <img src="{{ url_for('static', filename='img/contato.png') }}" alt="Imagem do contato" width="90" height="90"
+            class="rounded-circle mr-3">
+    </div>
+
+    <form method="post" class="mb-4">
+        <div class="mb-3">
+            <label for="titulo" class="form-label">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="texto" class="form-label">Mensagem</label>
+            <textarea class="form-control" id="texto" name="texto" rows="3" required></textarea>
+        </div>
+        <div class="d-flex justify-content-between mt-5">
+            <button type="submit" class="btn btn-success">Enviar</button>
+            <button type="button" class="btn btn-danger" onclick="history.back()">
+                <i class="bi bi-box-arrow-left"></i> Voltar
+            </button>
+        </div>
+
+    </form>
+
+    <h2>Mensagens enviadas</h2>
+    {% if mensagens %}
+    <ul class="list-group">
+        {% for m in mensagens %}
+        <li class="list-group-item">
+            <strong>{{ m.titulo }}</strong>
+            <small class="text-muted">{{ m.data_envio.strftime('%d/%m/%Y %H:%M') }}</small>
+            <p>{{ m.texto }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Não há mensagens enviadas ainda.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+{% endblock %}
+
+{% block title %}
+    <title>Todolist - Signup</title>
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+<div class="container">
+    {% block content %}
+    <h1 class="titulo-pagina">Signup</h1>
+
+    {% if erros %}
+    <div id="erro-alerta" class="alerta-erros">
+        <ul>
+            {% for erro in erros %}
+                <li>{{ erro }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="form-centralizado">
+        <form method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" value="{{ name }}" id="name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" name="email" value="{{ email }}" id="exampleInputEmail1">
+            </div>
+            <div class="form-group">
+                <label for="celular">Celular</label>
+                <input type="number" class="form-control" name="celular" value="{{ celular }}" id="celular">
+            </div>
+            <div class="form-group">
+                <label for="password1">Password</label>
+                <input type="password" class="form-control" name="password1" id="password1">
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <input type="password" class="form-control" name="password2" id="password2">
+            </div>
+            
+            <div class="comando">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <p>Já tem uma conta? Faça o login <a href="{{ url_for('login') }}">aqui.</a></p>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
+</div>
+

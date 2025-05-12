@@ -1,0 +1,52 @@
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar .nav-link {
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #0056b3;
+}
+
+.message-form input,
+.message-form textarea {
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.message-form input:focus,
+.message-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.message-form button {
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.message-form button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .form-centralizado {
+        margin: 20px;
+    }
+
+    .custom-container {
+        padding: 15px;
+    }
+
+    .navbar .navbar-nav {
+        flex-direction: column;
+    }
+
+    .d-flex.align-items-center {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

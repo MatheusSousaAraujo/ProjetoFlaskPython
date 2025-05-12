@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+{% endblock %}
+
+{% block title %}
+    <title>Todolist - Login</title>
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+<div class="container">
+{% block content %}
+
+    <h1 class="titulo-pagina">Login</h1>
+
+    {% if erros %}
+    <div id="erro-alerta" class="alerta-erros">
+        <ul>
+            {% for erro in erros %}
+                <li>{{ erro }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="form-centralizado">
+        <form method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="{{ email }}">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <div class="comando">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <p>Não tem uma conta? Cadastre-se <a href="{{url_for('signup')}}">aqui.</a></p>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+</div>

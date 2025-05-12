@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>{% if contato %}Editar Contato{% else %}Novo Contato{% endif %}</title>
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container mt-4">
+
+    <h1 class="text-center mb-4">{% if contato %}Editar Contato{% else %}Novo Contato{% endif %}</h1>
+
+    <form method="post" class="border p-4 rounded shadow">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ contato.name if contato else '' }}"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email"
+                value="{{ contato.email if contato else '' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="celular" class="form-label">Celular</label>
+            <input type="number" class="form-control" id="celular" name="celular"
+                value="{{ contato.celular if contato else '' }}" required>
+        </div>
+
+        <div class="d-flex justify-content-between mt-5">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-person-plus-fill"></i> {% if contato %}Salvar Alterações{% else %}Cadastrar{% endif %}
+            </button>
+            <button type="button" class="btn btn-danger" onclick="history.back()">
+                <i class="bi bi-box-arrow-left"></i> Voltar
+            </button>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}
