@@ -1,18 +1,32 @@
-# ProjetoFlaskPython
+# Projeto Flask Python
 
-Para rodar esse projeto execute no terminalos seguntes comandos:
+## 🚀 Como rodar este projeto
 
----para criar um ambiente virtual python---
+Siga os passos abaixo para configurar e executar o projeto Flask em sua máquina local:
+
+### 📦 1. Criar e ativar o ambiente virtual
+
+```bash
+# Crie um ambiente virtual
 python -m venv meu_ambiente
 
----Para ativar o ambiente virtual python---
+# Ative o ambiente virtual
+# No Windows:
 meu_ambiente\Scripts\activate
 
----para instalar as dependencias e o flask---
+# No macOS/Linux:
+source meu_ambiente/bin/activate
+```
+
+### 📥 2. Instalar as dependências
+```bash
 pip install -r requirements.txt
-
----Para atualizar o python---
-python.exe -m pip install --upgrade pip
-
----Para executar o arquivo.py---
+```
+### 🔄 3. Atualizar o pip (opcional, mas recomendado)
+```bash
+python -m pip install --upgrade pip
+```
+### ▶️ 4. Executar o projeto
+```bash
 python app.py
+```
