@@ -2,58 +2,131 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+<style>
+    .alerta-erros {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        max-width: 300px;
+        background-color: #f44336;
+        color: white;
+        padding: 16px 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        animation: fadeOut 4s forwards;
+        font-size: 15px;
+        text-align: left;
+        word-wrap: break-word;
+    }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+
+        80% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+</style>
 {% endblock %}
 
 {% block title %}
-    <title>Signup</title>
+<title>Signup</title>
 {% endblock %}
 
 {% block menu %}
 {% endblock %}
 
-<div class="container">
-    {% block content %}
-    <h1 class="titulo-pagina">Signup</h1>
+{% block content %}
 
-    {% if erros %}
-    <div id="erro-alerta" class="alerta-erros">
-        <ul>
-            {% for erro in erros %}
-                <li>{{ erro }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
 
-    <div class="form-centralizado">
-        <form method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" value="{{ name }}" id="name">
+<div class="card-body p-md-5">
+    <div class="row justify-content-center">
+        <!-- Form Section -->
+        <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Cadastro</p>
+
+            {% if erros %}
+            <div id="erro-alerta" class="alerta-erros">
+                <ul>
+                    {% for erro in erros %}
+                    <li>{{ erro }}</li>
+                    {% endfor %}
+                </ul>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" name="email" value="{{ email }}" id="exampleInputEmail1">
-            </div>
-            <div class="form-group">
-                <label for="celular">Celular</label>
-                <input type="number" class="form-control" name="celular" value="{{ celular }}" id="celular">
-            </div>
-            <div class="form-group">
-                <label for="password1">Password</label>
-                <input type="password" class="form-control" name="password1" id="password1">
-            </div>
-            <div class="form-group">
-                <label for="password2">Confirm Password</label>
-                <input type="password" class="form-control" name="password2" id="password2">
-            </div>
-            
-            <div class="comando">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <p>Já tem uma conta? Faça o login <a href="{{ url_for('login') }}">aqui.</a></p>
-            </div>
-        </form>
+            {% endif %}
+
+            <form method="POST" class="mx-1 mx-md-4">
+                <!-- Name -->
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="formName">Nome</label>
+                        <input type="text" name="name" id="formName" class="form-control" value="{{ name }}">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="formEmail">Email</label>
+                        <input type="email" name="email" id="formEmail" class="form-control" value="{{ email }}">
+                    </div>
+                </div>
+
+                <!-- Celular -->
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-phone fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="formCelular">Celular</label>
+                        <input type="number" name="celular" id="formCelular" class="form-control" value="{{ celular }}">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="formPassword1">Senha</label>
+                        <input type="password" name="password1" id="formPassword1" class="form-control">
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="formPassword2">Repita a senha</label>
+                        <input type="password" name="password2" id="formPassword2" class="form-control">
+                    </div>
+                </div>
+
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
+                    </div>
+                    <p class="text-center">Já tem uma conta? <a href="{{ url_for('login') }}">Faça login</a></p>
+                </div>
+
+
+            </form>
+
+        </div>
+
+        <!-- Image Section -->
+        <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+            <img src="static/img/img1.svg" style="max-width: 90%;" alt="Sample image">
+        </div>
     </div>
+
+
     {% endblock %}
-</div>
-
