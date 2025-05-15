@@ -97,16 +97,26 @@ def signup():
         if password1 != password2:
             erros.append('As senhas devem ser iguais')
 
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            erros.append('Já existe um usuário com esse email.')
+
         if erros:
             return render_template('signup.html', erros=erros, name=name, email=email, celular=celular)
 
-        senha_hash = generate_password_hash(password1)
-        user = User(name=name, email=email, celular=celular, password=senha_hash)
-        db.session.add(user)
-        db.session.commit()
-        return redirect(url_for('login'))
+        try:
+            senha_hash = generate_password_hash(password1)
+            user = User(name=name, email=email, celular=celular, password=senha_hash)
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for('login'))
+        except Exception as e:
+            db.session.rollback() 
+            erros.append('Erro ao registrar usuário. Tente novamente.')
+            return render_template('signup.html', erros=erros, name=name, email=email, celular=celular)
 
     return render_template('signup.html')
+
 
 @app.route('/meus-contatos', methods=['GET', 'POST'])
 @login_required
@@ -122,7 +132,6 @@ def contato():
         name = request.form['name']
         email = request.form['email']
         celular = request.form['celular']
-
         novo_contato = Contato(name=name, email=email, celular=celular, user_id=current_user.id)
         db.session.add(novo_contato)
         db.session.commit()
